@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, StyleSheet, Image, Text, View } from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import covidAPI from '../api/CovidAPI';
 const HomePage = () => {
+    const [totalConfirmed, setTotalConfirmed] = useState(0);
+    const [totalDeaths, setTotalDeaths] = useState(0);
+
+    useEffect(() => {
+        covidResponse();
+    }, []);
+
+    const covidResponse = async () => {
+        const response = await covidAPI.get('world/total');
+        console.log(response.data);
+        setTotalConfirmed(response.data.TotalConfirmed);
+        setTotalDeaths(response.data.TotalDeaths);
+    };
+
     return (
         <View style={styles.container}>
             {/* Title */}
@@ -17,13 +31,13 @@ const HomePage = () => {
             {/* Displays world wide total Covid case numbers*/}
             <Text style={styles.caseBanner}>
                 Total Covid Cases:
-                <Text style={styles.bannerText}> 500</Text>
+                <Text style={styles.bannerText}>{totalConfirmed}</Text>
             </Text>
 
             {/* Displays world wide total Death numbers*/}
             <Text style={styles.deathBanner}>
                 Total Covid Deaths:
-                <Text style={styles.bannerText}></Text>1000{' '}
+                <Text style={styles.bannerText}>{totalDeaths}</Text>{' '}
             </Text>
 
             {/* Button that will lead to the search screen*/}

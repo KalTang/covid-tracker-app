@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Image, Text, View } from 'react-native';
+import {
+    Button,
+    StyleSheet,
+    Image,
+    Text,
+    View,
+    TouchableOpacity,
+} from 'react-native';
 // import { TouchableOpacity } from 'react-native-gesture-handler';
 import covidAPI from '../api/CovidAPI';
 const HomePage = () => {
@@ -30,6 +37,7 @@ const HomePage = () => {
 
             {/* Displays world wide total Covid case numbers*/}
             <Text style={styles.caseBanner}>
+                {' '}
                 Total Covid Cases:
                 <Text style={styles.bannerText}>{totalConfirmed}</Text>
             </Text>
@@ -41,9 +49,9 @@ const HomePage = () => {
             </Text>
 
             {/* Button that will lead to the search screen*/}
-            {/* <TouchableOpacity> */}
-            <Text style={styles.button}>Start!</Text>
-            {/* </TouchableOpacity> */}
+            <TouchableOpacity>
+                <Text style={styles.button}>Search</Text>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -84,7 +92,7 @@ const styles = StyleSheet.create({
     },
     bannerText: {
         color: '#fff',
-        fontSize: 20,
+        fontSize: 25,
         justifyContent: 'center',
         alignItems: 'center',
     },

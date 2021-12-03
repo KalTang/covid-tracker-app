@@ -7,9 +7,12 @@ import {
     View,
     TouchableOpacity,
 } from 'react-native';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 import covidAPI from '../api/CovidAPI';
-const HomePage = () => {
+
+const HomePage = ({ navigation }) => {
+    // const navigation = useNavigation();
+
     const [totalConfirmed, setTotalConfirmed] = useState(0);
     const [totalDeaths, setTotalDeaths] = useState(0);
 
@@ -49,7 +52,11 @@ const HomePage = () => {
             </Text>
 
             {/* Button that will lead to the search screen*/}
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.navigate('Search');
+                }}
+            >
                 <Text style={styles.button}>Search</Text>
             </TouchableOpacity>
         </View>

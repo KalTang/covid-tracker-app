@@ -4,9 +4,13 @@ import { EvilIcons } from '@expo/vector-icons';
 
 const SearchBar = () => {
     return (
-        <View style={style.background}>
+        <View style={styles.background}>
             <EvilIcons style={styles.icon} name="search" />
-            <TextInput placeholder="Search Countries"></TextInput>
+            <TextInput
+                style={styles.textField}
+                placeholder="Search Countries"
+                placeholderTextColor="#fff"
+            ></TextInput>
         </View>
     );
 };
@@ -18,15 +22,20 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         flexDirection: 'row',
         alignItems: 'center',
+        borderWidth: 1.5,
+        borderColor: '#b73535',
     },
-    input: {
-        flex: 1,
-    },
+    //     flex: 1,
+    // },
 
     icon: {
-        fontSize: 35,
+        fontSize: 55,
         alignSelf: 'center',
         marginHorizontal: 15,
+    },
+    textField: {
+        color: '#fff',
+        fontSize: 25,
     },
 });
 

@@ -17,7 +17,7 @@ const CountryCard = () => {
 
     const countryResponse = async () => {
         const response = await CovidAPI.get('summary');
-        console.log(response.data.Countries);
+        console.log(response.data.Global);
     };
     return (
         <TouchableOpacity>

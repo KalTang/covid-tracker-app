@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Button,
     StyleSheet,
@@ -7,9 +7,18 @@ import {
     View,
     TouchableOpacity,
 } from 'react-native';
+import CovidAPI from '../api/CovidAPI';
 // import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 
 const CountryCard = () => {
+    useEffect(() => {
+        countryResponse();
+    }, []);
+
+    const countryResponse = async () => {
+        const response = await CovidAPI.get('summary');
+        console.log(response.data.Countries);
+    };
     return (
         <TouchableOpacity>
             <View style={styles.container}>

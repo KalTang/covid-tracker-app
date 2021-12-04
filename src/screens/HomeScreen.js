@@ -7,12 +7,13 @@ import {
     View,
     TouchableOpacity,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 import covidAPI from '../api/CovidAPI';
 
 const HomePage = ({ navigation }) => {
     // const navigation = useNavigation();
 
+    // Hooks
     const [totalConfirmed, setTotalConfirmed] = useState(0);
     const [totalDeaths, setTotalDeaths] = useState(0);
     const [newConfirmed, setNewConfirmed] = useState(0);
@@ -23,9 +24,11 @@ const HomePage = ({ navigation }) => {
         covidResponse();
     }, []);
 
+    // API Call
     const covidResponse = async () => {
         const response = await covidAPI.get('summary');
         console.log(response.data.Global);
+        // API Data
         setTotalConfirmed(response.data.Global.TotalConfirmed);
         setTotalDeaths(response.data.Global.TotalDeaths);
         setNewConfirmed(response.data.Global.NewConfirmed);
@@ -60,6 +63,7 @@ const HomePage = ({ navigation }) => {
                 {/* New deaths */}
                 <Text style={styles.bannerText}>New Deaths: {newDeaths}</Text>
             </View>
+
             {/* Button that will lead to the search screen*/}
             <TouchableOpacity
                 onPress={() => {

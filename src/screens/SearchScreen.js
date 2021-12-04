@@ -10,7 +10,7 @@ import {
 import CountryCard from '../components/CountryCard';
 import SearchBar from '../components/SearchBar';
 
-const SearchScreen = ({ navigation }) => {
+const SearchScreen = () => {
     return (
         <View style={styles.searchContainer}>
             <SearchBar />

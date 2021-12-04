@@ -1,3 +1,4 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React, { useState, useEffect } from 'react';
 import {
     Button,
@@ -10,7 +11,7 @@ import {
 import CovidAPI from '../api/CovidAPI';
 // import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 
-const CountryCard = () => {
+const CountryCard = ({ navigation }) => {
     // Hooks
     const [country, setCountry] = useState('');
 
@@ -25,7 +26,11 @@ const CountryCard = () => {
         setCountry(response.data.Countries[1].Country);
     };
     return (
-        <TouchableOpacity>
+        <TouchableOpacity
+            onPress={() => {
+                navigation.navigate('Details');
+            }}
+        >
             <View style={styles.container}>
                 <Text style={styles.countryText}>{country}</Text>
             </View>

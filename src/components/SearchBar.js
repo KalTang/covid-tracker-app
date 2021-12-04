@@ -4,25 +4,25 @@ import { EvilIcons } from '@expo/vector-icons';
 
 const SearchBar = () => {
     return (
-        <View style={styles.background}>
+        <View style={styles.container}>
             <TextInput
                 style={styles.textField}
                 placeholder="Search Countries"
-                placeholderTextColor="#fff"
+                placeholderTextColor="#808080"
             ></TextInput>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    background: {
+    container: {
         marginTop: 10,
         height: 50,
         borderRadius: 6,
         marginHorizontal: 15,
         flexDirection: 'row',
         alignItems: 'center',
-        borderWidth: 1.5,
+        borderWidth: 3,
         borderColor: '#b73535',
     },
 

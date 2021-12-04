@@ -7,12 +7,14 @@ import {
     View,
     TouchableOpacity,
 } from 'react-native';
+import CountryCard from '../components/CountryCard';
 import SearchBar from '../components/SearchBar';
 
 const SearchScreen = ({ navigation }) => {
     return (
         <View style={styles.searchContainer}>
             <SearchBar />
+            <CountryCard />
         </View>
     );
 };

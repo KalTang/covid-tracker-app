@@ -13,7 +13,7 @@ import CovidAPI from '../api/CovidAPI';
 
 const CountryCard = ({ navigation }) => {
     // Hooks
-    const [country, setCountry] = useState('');
+    const [country, setCountry] = useState([]);
 
     useEffect(() => {
         countryResponse();
@@ -27,11 +27,14 @@ const CountryCard = ({ navigation }) => {
     };
     return (
         <TouchableOpacity
-            onPress={() => {
-                navigation.navigate('Details');
-            }}
+        // The On press should navigate you to the country details page for that country
+
+        // onPress={() => {
+        //     navigation.navigate('Details');
+        // }}
         >
             <View style={styles.container}>
+                {country.map((country) => {})}
                 <Text style={styles.countryText}>{country}</Text>
             </View>
         </TouchableOpacity>

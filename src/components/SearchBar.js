@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
+import CovidAPI from '../api/CovidAPI';
 
-const SearchBar = () => {
+const SearchBar = ({ term }) => {
+    const [country, setCountry] = useState([]);
+
+    useEffect(() => {
+        countryResponse();
+    }, []);
+
+    const countryResponse = async () => {
+        const response = await CovidAPI.get('summary');
+        console.log(response.data.Country);
+    };
+
     return (
         <View style={styles.container}>
             <TextInput
                 style={styles.textField}
                 placeholder="Search Countries"
                 placeholderTextColor="#808080"
+                value={term}
             ></TextInput>
         </View>
     );

@@ -5,6 +5,7 @@ import {
     Image,
     Text,
     View,
+    FlatList,
     TouchableOpacity,
 } from 'react-native';
 import CountryCard from '../components/CountryCard';
@@ -14,7 +15,9 @@ const SearchScreen = () => {
     return (
         <View style={styles.searchContainer}>
             <SearchBar />
-            <CountryCard />
+            <FlatList>
+                <CountryCard />
+            </FlatList>
         </View>
     );
 };

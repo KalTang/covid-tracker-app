@@ -8,36 +8,57 @@ import {
     View,
     TouchableOpacity,
 } from 'react-native';
+import { set } from 'react-native-reanimated';
 import CovidAPI from '../api/CovidAPI';
 // import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 
 const CountryCard = ({ navigation }) => {
-    // Hooks
-    const [country, setCountry] = useState([]);
+    // Hook for the countries array
+    const [countries, setCountries] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
-        countryResponse();
+        (async () => {
+            try {
+                const response = await CovidAPI.get('summary');
+                setCountries(response.data.Countries);
+            } catch (e) {
+                console.log('Unable to fetch data');
+                setError('Unable to fetch data');
+            }
+            // console.log(countries);
+        })();
     }, []);
 
     // Fetches data from Api
-    const countryResponse = async () => {
-        const response = await CovidAPI.get('summary');
-        console.log(response.data.Countries[1].Country);
-        setCountry(response.data.Countries[1].Country);
-    };
+    // const countryResponse = async () => {
+    //     const response = await CovidAPI.get('summary');
+    //     const data = response.data?.Countries;
+
+    //     // console.log(response.data?.Countries[1].Country);
+    //     setCountries(data);
+    // };
     return (
-        <TouchableOpacity
         // The On press should navigate you to the country details page for that country
 
         // onPress={() => {
         //     navigation.navigate('Details');
         // }}
-        >
-            <View style={styles.container}>
-                {country.map((country) => {})}
-                <Text style={styles.countryText}>{country}</Text>
-            </View>
-        </TouchableOpacity>
+        <>
+            {countries.map((country) => (
+                <TouchableOpacity>
+                    <View style={styles.container}>
+                        <Text
+                            key={country.CountryCode}
+                            style={styles.countryText}
+                        >
+                            {country.Country}
+                        </Text>
+                        <Text>{error}</Text>
+                    </View>
+                </TouchableOpacity>
+            ))}
+        </>
     );
 };
 
